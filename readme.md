@@ -1,6 +1,8 @@
 # clube-platinum-api
 
-Teste de API com HTTParty.
+Teste de API com HTTParty.  
+ 
+*Makes http fun again! Ain't no party like a httparty, because a httparty don't stop.*
 
 ## Getting started
 
