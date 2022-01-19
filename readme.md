@@ -4,28 +4,25 @@ Teste de API com HTTParty.
 
 ## Getting started
 
-Os testes verficam a resposta dos endpoints que dão suporte para a Campanha Club Platinum do Ambiente Lojista B&S.  
-Para isso, utilizamos um framework de teste para requisições chamado [HTTParty](https://github.com/jnunemaker/httparty), que auxilia validar os métodos HTTP.   
+[HTTParty](https://github.com/jnunemaker/httparty), auxilia a validar as requisições com os métodos HTTP.   
 Para facilitar a sintaxe e disponibilizar recursos pra validação, utilizamos também [Rspec](https://relishapp.com/rspec/).
    
-
-![image](./image/teste-clube-platinum.png)   
-
-
+ 
 ## Para executar este projeto:   
 
 * É necessário ter uma versão do Ruby e Bundle instalada na máquina.  
 * Clonar o projeto:  
-    `git clone https://gitlab.com/qualidade_pro22/clube-platinum-api.git`  
+    `git clone https://github.com/lucasjct/api-test-httparty.git`  
 * Instalar as dependências:  
 `bundle install` 
-* Após isso, executar os testes na linha de comando com:  
+* Após isso, executar os testes com o seguinte comando:  
 `rspec`
 
 
 # Como criar um projeto com HTTParty   
 
-* Partimos do princípio que tenha Ruby e Bundle instalados 
+* Partimos do princípio que tenha Ruby e Bundle instalados  
+
 * Criar o direório do projeto e rodar o seguinte comando:  
 `rspec --init`  
 * Após o  comando acima, será criado o seguintes diretório:  
@@ -64,6 +61,10 @@ end
 
 ```ruby
 require_relative "../services/service.rb"
+require 'httparty'
+require 'httparty/request'
+require 'httparty/response/headers'
+
 
 RSpec.configure do |config|
   include Exemplo
@@ -78,7 +79,7 @@ spec/
   |
   |__ spec_helper.rb
 ```
-* Dentro do arquivo `get_listar_spec.rb`, será utilizada a sintaxe pelo Rspec, que pode ser consultada [aqui](https://relishapp.com/rspec/).  
+* Dentro do arquivo `get_listar_spec.rb`, será utilizada a sintaxe do Rspec, que pode ser consultada [aqui](https://relishapp.com/rspec/).  
 
 * A partir deste momento, a requisição deve ser chamada assim:  
 
@@ -91,7 +92,11 @@ describe "Exemplo de requisição" do
     end
 end
 ```  
-OBS: Chamamos apenas o módulo `Exemplo` porque lá no início configuramos toda a requisição dentro deste módulo e o tornamos global.  
+OBS: Chamamos apenas o módulo `Exemplo` porque lá no início configuramos toda a requisição dentro deste módulo e o tornamos global.    
+
+No diretório `hooks/` configuramos um método que sempre é chamado na suíte de testes e que retorna o token necessário para a autenticação.  O arquivo de `hooks` precisa chamar as configurações do arquivo `spec_helper.rb` .  
+
+O método do arquivo hooks é chamado pela palavra chave `before {nome_metodo(parâmetros)}` dentro da da suite de testes. A suite por sua vez, precisa chamar o arquivo hooks: `require_relative '../../hooks/hook'`.
 
 * Finalmente, para rodar os testes:   
 `rspec`  
