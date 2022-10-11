@@ -16,8 +16,14 @@ Para facilitar a sintaxe e disponibilizar recursos pra validação, utilizamos t
 * Instalar as dependências:  
 `bundle install` 
 * Após isso, executar os testes com o seguinte comando:  
-`rspec`
+`rspec`  
 
+## Para executar com Docker  
+* É necessário possuir o Docker instalado  
+* Clonar o projeto e executar o seguinte comando no diretório raiz:  
+  * `docker build -t httparty .`  
+* Após isso, rodar o comando para executar o container:  
+  * `docker container run -ti httparty`    
 
 # Como criar um projeto com HTTParty   
 
